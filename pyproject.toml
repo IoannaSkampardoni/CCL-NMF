@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccl-nmf-pipeline"
+version = "0.1.0"
+description = "AA → C-map → L-map → joint NMF"
+readme = "README.md"
+requires-python = "==3.10"
+dependencies = [
+  "numpy==1.26",
+  "pandas==1.4.4",
+  "scikit-learn==1.3.2",
+  "joblib==1.2",
+  "tensorflow==2.15",
+  "statsmodels==0.14.5",
+  "matplotlib==3.8.2",
+  "tqdm==4.65",
+]
