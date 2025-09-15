@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ## Run
 ```bash
 # 1) Train the autoencoder (AA)
-python aa.py train \
+python ccl_nmf/aa.py train \
   --features_csv data/aa_input/ref_features.csv \
   --covariates_csv data/aa_input/ref_covariates.csv \
   --outdir data/aa_output \
@@ -37,7 +37,7 @@ python aa.py train \
 
 # 2) Run inference for validation, heldout, and test sets
 # Validation:
-python aa.py infer \
+python ccl_nmf/aa.py infer \
   --models_dir data/aa_output \
   --features_csv data/aa_output/val_features.csv \
   --covariates_csv data/aa_output/val_participants.csv \
@@ -45,7 +45,7 @@ python aa.py infer \
   --seed 42
 
 # Heldout:
-python aa.py infer \
+python ccl_nmf/aa.py infer \
   --models_dir data/aa_output \
   --features_csv data/aa_output/heldout_features.csv \
   --covariates_csv data/aa_output/heldout_participants.csv \
@@ -53,7 +53,7 @@ python aa.py infer \
   --seed 42
 
 # Test:
-python aa.py infer \
+python ccl_nmf/aa.py infer \
   --models_dir data/aa_output \
   --features_csv data/aa_input/target_features.csv \
   --covariates_csv data/aa_input/target_covariates.csv \
@@ -61,19 +61,19 @@ python aa.py infer \
   --seed 42
 
 # 3) Build the C-map
-python C_map_calc.py \
+python ccl_nmf/C_map_calc.py \
   --output_dir data/aa_output \
   --save_dir data/jointNMF_input/C_map
 
 # 4) Build the L-map
-python L_map_calc.py \
+python ccl_nmf/L_map_calc.py \
   --residuals_csv data/jointNMF_input/C_map/C_map.csv \
   --rest_csv data/lme_input/target_longitudinal.csv \
   --out_dir data/jointNMF_input/L_map \
   --min_scans 3
 
 # 5) Run joint NMF
-python run_jointNMF.py \
+python ccl_nmf/run_jointNMF.py \
   --cross data/jointNMF_input/C_map/C_map.csv \
   --betas data/jointNMF_input/L_map/L_map.csv \
   --output-dir data/jointNMF_output \

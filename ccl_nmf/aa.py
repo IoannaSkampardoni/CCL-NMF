@@ -218,9 +218,9 @@ def train(cfg: TrainConfig) -> Path:
 
     @tf.function
     def train_step(xb, ae_lr, d_lr, g_lr):
-        ae_opt.learning_rate = ae_lr
-        d_opt.learning_rate = d_lr
-        g_opt.learning_rate = g_lr
+        ae_opt.learning_rate.assign(tf.cast(ae_lr, tf.float32))
+        d_opt.learning_rate.assign(tf.cast(d_lr, tf.float32))
+        g_opt.learning_rate.assign(tf.cast(g_lr, tf.float32))
         # Autoencoder
         with tf.GradientTape() as t_ae:
             z = encoder(xb, training=True)
@@ -261,7 +261,8 @@ def train(cfg: TrainConfig) -> Path:
             cycle = np.floor(1 + global_step / (2 * step_size))
             x_lr = np.abs(global_step / step_size - 2 * cycle + 1)
             clr = cfg.base_lr + (cfg.max_lr - cfg.base_lr) * max(0.0, 1.0 - x_lr) * scale_fn(cycle)
-            ae_l, d_l, g_l = train_step(xb, clr, clr, clr)
+            clr32 = tf.constant(clr, dtype=tf.float32)
+            ae_l, d_l, g_l = train_step(xb, clr32, clr32, clr32)
             ae_epoch.append(float(ae_l.numpy()))
             d_epoch.append(float(d_l.numpy()))
             g_epoch.append(float(g_l.numpy()))
