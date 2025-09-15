@@ -17,7 +17,8 @@ can express multiple patterns simultaneously, capturing mixed neuropathologic pr
 
 ## Install
 ```bash
-python -m venv .venv && source .venv/bin/activate
+conda create --name test python=3.10
+source activate test
 pip install -r requirements.txt
 ```
 
