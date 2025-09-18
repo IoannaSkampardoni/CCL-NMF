@@ -17,8 +17,8 @@ can express multiple patterns simultaneously, capturing mixed neuropathologic pr
 
 ## Install
 ```bash
-conda create --name test python=3.10
-source activate test
+conda create --name ccl_nmf python=3.10
+conda activate ccl_nmf
 pip install -r requirements.txt
 ```
 
@@ -32,7 +32,7 @@ python ccl_nmf/aa.py train \
   --age_bins 5 \
   --z_dim 10 --h_dim 110 100 \
   --epochs 1000 --patience 50 \
-  --batch_size 200 --seed 42 \
+  --batch_size 200 --seed 10 \
   --valheldout_size 0.35 --heldout_frac_within_val 0.40 \
   --base_lr 1e-4 --max_lr 5e-3 --gamma 0.98 --step_size 0
 
@@ -43,7 +43,7 @@ python ccl_nmf/aa.py infer \
   --features_csv data/aa_output/val_features.csv \
   --covariates_csv data/aa_output/val_participants.csv \
   --name val \
-  --seed 42
+  --seed 10
 
 # Heldout:
 python ccl_nmf/aa.py infer \
@@ -51,7 +51,7 @@ python ccl_nmf/aa.py infer \
   --features_csv data/aa_output/heldout_features.csv \
   --covariates_csv data/aa_output/heldout_participants.csv \
   --name heldout \
-  --seed 42
+  --seed 10
 
 # Test:
 python ccl_nmf/aa.py infer \
@@ -59,7 +59,7 @@ python ccl_nmf/aa.py infer \
   --features_csv data/aa_input/target_features.csv \
   --covariates_csv data/aa_input/target_covariates.csv \
   --name test \
-  --seed 42
+  --seed 10
 
 # 3) Build the C-map
 python ccl_nmf/C_map_calc.py \
@@ -78,8 +78,8 @@ python ccl_nmf/run_jointNMF.py \
   --cross data/jointNMF_input/C_map/C_map.csv \
   --betas data/jointNMF_input/L_map/L_map.csv \
   --output-dir data/jointNMF_output \
-  --num-components 3 \
-  --seed 42
+  --num-components 2 \
+  --seed 10
 ```
 
 ## Input Data

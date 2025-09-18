@@ -94,6 +94,17 @@ def main():
         init_W=None, init_H1=None, init_H2=None,
         print_enabled=True)
 
+
+    print("\n[INFO] Joint NMF finished successfully.")
+    print(f"[INFO] Results saved in: {component_path}")
+    print("[INFO] Files generated include:")
+    print("  • W.npy              : ROI x Components (shared dictionary)")
+    print("  • H1.npy             : Components x Subjects (C-map loadings)")
+    print("  • H2.npy             : Components x Subjects (L-map loadings)")
+    print("  • loss.npy           : Final reconstruction loss")
+    print("  • loss_list.npy      : Loss values across iterations")
+    print("  • sparsity_list.npy  : Sparsity values across iterations\n")
+    
     # -------------------------- Save reconstruction stats -----------------------
     rec_error = float(loss_list[-1]) if len(loss_list) else np.nan
     n = W.size
