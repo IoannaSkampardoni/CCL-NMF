@@ -88,12 +88,10 @@ The pipeline expects CSV files with specific formats for features, covariates, a
 
 ### 1. Reference cohort (for training the autoencoder)
 - **`ref_features.csv`**  
-  Shape: 1000 × 21  
   - `participant_id`: subject identifier  
   - `ROI_01` … `ROI_20`: regional gray matter volumes at baseline  
 
 - **`ref_covariates.csv`**  
-  Shape: 1000 × 2  
   - `participant_id`  
   - `Age`: baseline age in years  
 
@@ -103,12 +101,10 @@ These files provide the data of the *reference group* used to train the normativ
 
 ### 2. Target cohort (to apply the autoencoder and generate C-map)
 - **`target_features.csv`**  
-  Shape: 4000 × 21  
   - `participant_id`  
   - `ROI_01` … `ROI_20`: regional gray matter volumes at baseline  
 
 - **`target_covariates.csv`**  
-  Shape: 4000 × 2  
   - `participant_id`  
   - `Age`: baseline age in years  
 
@@ -118,13 +114,9 @@ These files provide the data of the *target cohort*, used for generating deviati
 
 ### 3. Longitudinal data of the target cohort (for L-map estimation)
 - **`target_longitudinal.csv`**  
-  Shape: ~10,000 × 26  
   - `participant_id`  
   - `visit`: visit number  
   - `Age`: age at scan  
-  - `Sex`: sex (coded 0/1)  
-  - `ICV`: intracranial volume  
-  - `Diagnosis`: diagnosis label (e.g., CN, MCI, AD)  
   - `ROI_01` … `ROI_20`: longitudinal gray matter volumes across visits  
 
 This file is used to estimate **individual rates of change** with linear mixed-effects models (L-map).
