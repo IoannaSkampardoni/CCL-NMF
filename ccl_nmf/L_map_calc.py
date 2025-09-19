@@ -1,28 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-L-map creation with fixed LME (Time-only random slope).
-- Uses only participant_id and Age (no PTID, SITE, or Study).
-- Model per ROI: Intensity ~ Baseline_age + BaselineVol + Time
-- Random effects: re_formula="~Time" (subject-specific slope for Time)
-- Always writes L_map = FE(Time) + RE(Time) per subject × ROI
-
-Inputs:
-  --residuals_csv: used to intersect participant_id universe
-  --rest_csv: longitudinal table with columns: participant_id, Age, and ROI columns
-  --out_dir: where to write outputs
-  --min_scans: min # of scans per subject (default 3)
-
-Outputs:
-  L_delta.csv         : per-subject deltas d_* (baseline - max) for provenance
-  Fixed_effect.csv    : FE coefficients per ROI (Intercept, Baseline_age, BaselineVol, Time)
-  Random_effect.csv   : RE(Time) per subject × ROI
-  L_map.csv          : FE(Time) + RE(Time) per subject × ROI (the final L_map)
-
-Notes:
-- Time is defined as Baseline_age - Max_age (negative), matching earlier convention.
-"""
-
 import argparse
 from pathlib import Path
 import numpy as np

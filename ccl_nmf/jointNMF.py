@@ -1,9 +1,3 @@
-"""
-jointNMF_clean.py
-------------------
-Cleaned (style/organization) version of the original jointNMF_6.py.
-Functionality, defaults, math, and outputs are intentionally unchanged.
-"""
 import os
 import warnings
 import numpy as np

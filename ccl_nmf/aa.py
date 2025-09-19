@@ -1,31 +1,3 @@
-#!/usr/bin/env python3
-"""
-Adversarial Autoencoder (AAE) — NO-SEX pipeline (Minimal deterministic setup)
-
-Determinism kept (minimal & CPU-friendly):
-- Seeds Python, NumPy, and TensorFlow with the same --seed.
-- Uses seeded StratifiedShuffleSplit and seeded tf.data shuffle.
-- Sets tf.data to deterministic ordering.
-
-No environment variables, no GPU forcing, no thread pinning.
-
-Other features:
-- Stratified splits by equal-width age bins over the observed range (choose 4 or 5 bins).
-- Cyclical Learning Rate (CLR): base_lr, max_lr, step_size, gamma.
-- Decoder takes only z (no sex conditioning); inputs assumed sex-corrected.
-
-Artifacts:
-  outdir/
-    best_encoder.h5, best_decoder.h5, best_discriminator.h5
-    encoder.h5, decoder.h5, discriminator.h5
-    scaler.joblib
-    training_history.csv
-    train_covariates.csv / val_covariates.csv / heldout_covariates.csv
-    train_features.csv / val_features.csv / heldout_features.csv
-
-Inference outputs (under models_dir/<name>/):
-  normalized.csv, reconstruction.csv, encoded.csv, reconstruction_error.csv
-"""
 from __future__ import annotations
 
 import argparse
@@ -58,7 +30,6 @@ def set_global_seeds(seed: int) -> None:
     tf.keras.utils.set_random_seed(seed)
 
 
-# ------------------------- Convenience -------------------------
 def set_tf_verbosity(quiet: bool = True) -> None:
     if not quiet:
         return

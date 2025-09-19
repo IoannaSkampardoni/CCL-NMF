@@ -10,7 +10,7 @@ def make_encoder_model_v1(n_features, h_dim, z_dim):
         x = keras.layers.Dense(n_neurons_layer)(x) #fully-connected layer
         x = keras.layers.LeakyReLU()(x) #f(x)=max(0,x)
 
-    encoded = keras.layers.Dense(z_dim)(x) # Glorot uniform initializer, also called Xavier uniform initializer. https://paperswithcode.com/method/xavier-initialization
+    encoded = keras.layers.Dense(z_dim)(x) 
     model = keras.Model(inputs=inputs, outputs=encoded)
     return model
 
