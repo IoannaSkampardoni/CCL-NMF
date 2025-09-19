@@ -58,7 +58,7 @@ def main():
     df_betas0.rename(columns={'rticipant_id': 'participant_id'}, inplace=True) # fix potential typo column for participant id
 
     df_betas = df_betas0.copy()
-    df_betas[GM_ROIS] = df_betas[GM_ROIS].where(df_betas[GM_ROIS] > 0, np.nan) # keep only non-positive betas (positive -> NaN), then flip sign
+    df_betas[GM_ROIS] = df_betas[GM_ROIS].where(df_betas[GM_ROIS] < 0, np.nan) # keep only non-positive betas (positive -> NaN), then flip sign
     df_betas[GM_ROIS] = -df_betas[GM_ROIS]
 
     scaler_beta = MinMaxScaler()
