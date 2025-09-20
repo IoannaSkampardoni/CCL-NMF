@@ -18,7 +18,7 @@ can express multiple patterns simultaneously, capturing mixed neuropathologic pr
 ## Install
 ```bash
 conda create --name ccl_nmf python=3.10
-conda activate ccl_nmf
+source activate ccl_nmf
 pip install -r requirements.txt
 ```
 

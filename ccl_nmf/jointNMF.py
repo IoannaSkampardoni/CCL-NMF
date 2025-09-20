@@ -21,8 +21,7 @@ def clNMF(
     """
     if print_enabled:
         print('---------------------------------------------------------------------')
-        print('Objective: a*||X1 - WH1||^2 + ||X2 - WH2||^2 + constraint for W growth control + '
-              'sparsity constraint for H1 + sparsity constraint for H2')
+        print('Objective: a*||X1 - WH1||^2 + ||X2 - WH2||^2')
         print('')
 
     # ---- Initialization ------------------------------------------------
